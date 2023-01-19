@@ -2,7 +2,7 @@
   "codeowners": ["@XeonStaf"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "google.com",
+  "documentation": "https://github.com/XeonStaf/LaundryHomeAsistant",
   "domain": "laundry",
   "iot_class": "calculated",
   "name": "Laundry",

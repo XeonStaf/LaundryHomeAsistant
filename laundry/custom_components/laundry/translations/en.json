@@ -2,7 +2,6 @@
     "config": {
       "step": {
         "user": {
-          "titile": "Laundry Sensor",
           "description": "New laundry Sensor based on power from socket",
           "data": {
             "entity_id": "Input sensor",

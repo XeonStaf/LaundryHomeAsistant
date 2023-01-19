@@ -1,0 +1,11 @@
+{
+  "codeowners": ["@XeonStaf"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "google.com",
+  "domain": "laundry",
+  "iot_class": "calculated",
+  "name": "Laundry",
+  "requirements": [],
+  "version": "1.0.0"
+}

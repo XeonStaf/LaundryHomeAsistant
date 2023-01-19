@@ -1,0 +1,6 @@
+reset_machine:
+  description: Set currect status to IDLE and pass current cycle
+  target:
+    entity:
+      integration: laundry
+      domain: sensor

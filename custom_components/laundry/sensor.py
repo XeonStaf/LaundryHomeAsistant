@@ -1,6 +1,5 @@
 """Sensor platform for Laundry integration."""
 from __future__ import annotations
-from homeassistant.helpers import config_validation as entity_platform
 from homeassistant.helpers import selector
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.config_entries import ConfigEntry
@@ -8,7 +7,7 @@ from homeassistant.const import CONF_ENTITY_ID
 from homeassistant.core import HomeAssistant
 import voluptuous as vol
 from homeassistant.helpers import entity_registry as er
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers import entity_platform
 from homeassistant.helpers.event import async_track_state_change_event, Event
 import logging
 from .const import States, states_eng, DOMAIN, CYCLES_TO_CONFIRM_FINISHING
@@ -17,23 +16,21 @@ import datetime
 
 _LOGGER = logging.getLogger("lopbop")
 
-OPTION_FOR_RESET = (
-    {
-        vol.Required(CONF_ENTITY_ID): selector.EntitySelector(
-            selector.EntitySelectorConfig(domain=DOMAIN)
-        ),
-    },
-)
+OPTION_FOR_RESET = {
+    vol.Required(CONF_ENTITY_ID): selector.EntitySelector(
+        selector.EntitySelectorConfig(domain=DOMAIN)
+    )
+}
 
 
-def reset_machine(entity_id, call):
-    entity_id.reset_machine()
+def reset_machine(entity, call):
+    entity.reset_machine()
 
 
 async def async_setup_entry(
     hass: HomeAssistant,
     config_entry: ConfigEntry,
-    async_add_entities: AddEntitiesCallback,
+    async_add_entities: entity_platform.AddEntitiesCallback,
 ) -> None:
     """Initialize Laundry config entry."""
     registry = er.async_get(hass)
@@ -46,7 +43,7 @@ async def async_setup_entry(
     new = laundrySensorEntity(hass, unique_id, name, entity_id)
     async_add_entities([new])
 
-    platform = entity_platform.async_get_current_platform()
+    platform = entity_platform.current_platform.get()
     platform.async_register_entity_service(
         "reset_machine",
         OPTION_FOR_RESET,

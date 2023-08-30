@@ -25,7 +25,7 @@ CONFIG_SCHEMA = vol.Schema(
         vol.Required("name"): selector.TextSelector(),
         vol.Required(CONF_ENTITY_ID): selector.EntitySelector(
             selector.EntitySelectorConfig(
-                domain=SENSOR_DOMAIN, device_class=SensorDeviceClass.ENERGY
+                domain=SENSOR_DOMAIN, device_class=SensorDeviceClass.POWER
             )
         ),
     }
